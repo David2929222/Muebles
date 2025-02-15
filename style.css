@@ -21,7 +21,7 @@ body {
 }
 
 .header {
-    background-image: url(/images/bg.jpg);
+    background-image: url(images/bg.jpg);
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -275,7 +275,7 @@ td {
     color: #CF2D3A;
 }
 .footer-bg {
-    background-image: url(images/b2.jpg);
+    background-image: url(images/bg-2.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
