@@ -602,5 +602,59 @@ textarea {
         width: 250px !important;
     } 
 }
+.menu .navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.menu .navbar ul li {
+    margin: 0 15px;
+}
+
+.menu .navbar ul li a {
+    font-size: 25px;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* Estilos para móviles */
+@media (max-width: 991px) {
+    .menu label {
+        display: block; /* Muestra el ícono de hamburguesa */
+        cursor: pointer;
+    }
+
+    .menu .navbar {
+        position: absolute;
+        top: 100%; /* Coloca el menú debajo del logo */
+        left: 0;
+        right: 0;
+        background-color: #344C11; /* Fondo del menú móvil */
+        display: none; /* Oculta el menú por defecto */
+        flex-direction: row; /* Menú horizontal */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+    }
+
+    .menu .navbar ul li {
+        margin: 10px 5px; /* Espacio entre elementos */
+    }
+
+    .menu .navbar ul li a {
+        font-size: 18px; /* Tamaño de fuente más pequeño */
+        padding: 10px 15px; /* Padding más pequeño */
+    }
+
+    /* Muestra el menú cuando se hace clic en el ícono de hamburguesa */
+    #menu:checked ~ .navbar {
+        display: flex;
+    }
+}
 
 
