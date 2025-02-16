@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-/* Evita el desbordamiento horizontal */
-html, body {
-    overflow-x: hidden; /* Oculta el desbordamiento horizontal */
-    width: 100%; /* Asegura que el ancho no exceda el 100% */
-}
+
 /*font-family: "Bebas Neue", cursive;*/
 *{
     margin: 0;
@@ -41,7 +37,7 @@ body {
     right: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 1000;
 }
 .logo{
@@ -503,28 +499,91 @@ textarea {
 @media(max-width:991px) {
     .menu {
         padding: 20px;
+        position: relative;
     }
+
+    /* Mostrar el icono del menú hamburguesa */
     .menu label {
-        display: initial;
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        top: -300px; /* Ajusta este valor para subirlo más */
+        right: 20px; /* Lo mantiene alineado a la derecha */
+        z-index: 1100;
     }
+
+    /* Ajustar la barra de navegación para que sea vertical */
     .menu .navbar {
         position: absolute;
-        top: 100%;
+        top: -300%;
         left: 0;
+        width: 200px;
         right: 0;
-        background-color: #000000;
-        display: none;
+        background-color: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column; /* Esto hace que el menú sea vertical */
+        align-items: center;
+        gap: 15px;
+        padding: 20px 0;
+        transform: translateY(-10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease-in-out;
+        border-radius: 0 0 10px 10px;
     }
+
+    /* Asegurar que la lista dentro del navbar esté centrada */
+    .menu .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
     .menu .navbar ul li {
         width: 100%;
-    
+        padding: 10px 0;
     }
-    #menu:checked ~ .navbar{
-        display: initial;
+
+    /* Animación de desvanecimiento */
+    #menu:checked ~ .navbar {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Pequeño efecto de entrada */
+    @keyframes slideDown {
+        from {
+            transform: translateY(-10px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Mejor estilo para los enlaces */
+    .menu .navbar ul li a {
+        font-size: 20px;
+        padding: 10px;
+        display: block;
+        width: 100%;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .menu .navbar ul li a:hover {
+        background-color: #aec670;
+        color: black;
+        border-radius: 5px;
+    }
     }
     .header {
         min-height: 0vh;
     }
+    
     .header-content {
         padding: 80px 30px 50px 30px;
     }
@@ -604,135 +663,9 @@ textarea {
     }
     textarea {
         width: 250px !important;
-    } 
-}
-/* Estilos generales de los botones */
-.btn-1 {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #AEC670;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 20px;
-    font-family: "Bebas Neue", cursive;
-    margin: 25px 0;
-    border: 0;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
+} 
 
-/* Efecto al pasar el cursor */
-.btn-1:hover {
-    background-color: #8FAF50;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
-}
 
-/* Efecto de "onda" al hacer clic */
-.btn-1:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-/* Efecto de fondo animado */
-.btn-1::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease;
-    opacity: 0;
-}
-
-/* Animación al pasar el cursor */
-.btn-1:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-}
-
-/* Estilos específicos para móviles */
-@media (max-width: 991px) {
-    .btn-1 {
-        font-size: 18px; /* Tamaño de fuente más pequeño */
-        padding: 12px 25px; /* Padding más pequeño */
-    }
-}
-/* Estilos generales del menú */
-.menu .navbar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.menu .navbar ul li {
-    margin: 0 15px;
-}
-
-.menu .navbar ul li a {
-    font-size: 25px;
-    padding: 10px 20px;
-    color: #ffffff;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s ease;
-}
-
-/* Estilos para móviles */
-@media (max-width: 991px) {
-    .menu label {
-        display: block; /* Muestra el ícono de hamburguesa */
-        cursor: pointer;
-    }
-
-    .menu .navbar {
-        position: absolute;
-        top: 100%; /* Coloca el menú debajo del logo */
-        left: 0;
-        right: 0;
-        background-color: #344C11; /* Fondo del menú móvil */
-        display: none; /* Oculta el menú por defecto */
-        flex-direction: column; /* Menú vertical */
-        align-items: center; /* Centra los elementos */
-        padding: 10px 0; /* Espaciado interno */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    }
-
-    .menu .navbar ul li {
-        width: 100%; /* Ocupa todo el ancho */
-        text-align: center; /* Centra el texto */
-        margin: 10px 0; /* Espacio entre elementos */
-    }
-
-    .menu .navbar ul li a {
-        font-size: 20px; /* Tamaño de fuente más pequeño */
-        padding: 15px 0; /* Padding vertical */
-    }
-
-    /* Animación de despliegue */
-    .menu .navbar {
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    /* Muestra el menú con animación cuando se hace clic en el ícono de hamburguesa */
-    #menu:checked ~ .navbar {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 
